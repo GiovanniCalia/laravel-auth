@@ -20,7 +20,8 @@ class CreatePostsTable extends Migration
             $table->string('creator', 20);
             $table->text('description');
             $table->string('image', 255)->nullable();
-            $table->date('date_creation', 100);
+            $table->date('date_creation');
+            $table->timestamps();
         });
     }
 
