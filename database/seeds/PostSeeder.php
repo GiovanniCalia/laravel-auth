@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use App\Post;
+use Illuminate\Support\Str;
 
 class PostSeeder extends Seeder
 {
@@ -14,7 +15,7 @@ class PostSeeder extends Seeder
     public function run(Faker $faker)
     {
         for ($i=0; $i < 100; $i++){
-            $title = $faker->words(rand(2, 20), true);
+            $title = $faker->words(rand(2, 10), true);
 
             Post::create([
                 'title'         => $title,
