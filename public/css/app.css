@@ -12193,6 +12193,25 @@ ol {
   text-transform: uppercase;
 }
 
+/* BTN DELETE*/
+
+.overlay {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.overlay .popup {
+  margin: auto;
+  padding: 2rem;
+  max-width: 90%;
+  background-color: white;
+  border-radius: 1rem;
+}
+
+/* MAIN SECTIONS */
+
 .cards_main li {
   list-style-type: none;
   width: 300px;
@@ -12201,5 +12220,17 @@ ol {
   background-color: lightgray;
   border-radius: 20px;
   box-shadow: 5px 5px 5px black;
+}
+
+.main_box {
+  width: 100%;
+}
+
+.main_box .box {
+  width: 500px;
+  padding: 1rem;
+  margin: auto;
+  background-color: lightblue;
+  border-radius: 20px;
 }
 

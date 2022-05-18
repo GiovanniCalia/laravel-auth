@@ -26,6 +26,24 @@ ol{
 }
 
 
+/* BTN DELETE*/
+.overlay {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    .popup {
+        margin: auto;
+        padding: 2rem;
+        max-width: 90%;
+        background-color: white;
+        border-radius: 1rem;
+    }
+}
+
+
+/* MAIN SECTIONS */
 .cards_main{
 
     li{
@@ -36,5 +54,17 @@ ol{
         background-color: lightgray;
         border-radius: 20px;
         box-shadow: 5px 5px 5px black;
+    }
+}
+
+.main_box{
+    width: 100%;
+
+    .box{
+        width: 500px;
+        padding: 1rem;
+        margin: auto;
+        background-color: lightblue;
+        border-radius: 20px;
     }
 }

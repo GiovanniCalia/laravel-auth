@@ -22,7 +22,7 @@ class PostSeeder extends Seeder
                 'slug'          => Post::generateSlug($title),
                 'creator'       => $faker->name(),
                 'description'   => $faker->text(rand(100, 800)),
-                'image'         => $faker->imageUrl(null, 640, 480, true),
+                'image'         => $faker->imageUrl(640, 480, true),
                 'date_creation' => $faker->dateTime(),
             ]);
         }

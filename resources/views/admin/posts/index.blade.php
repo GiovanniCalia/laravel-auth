@@ -4,27 +4,37 @@
 
 @section('content')
 <main class="background_post">
-    <ol class="d-flex flex-wrap justify-content-between cards_main">
+    <div class="text-center links mt-5">
+        <a href="{{ route('admin.posts.create') }}">Create a new post</a><br>
+        <a href="{{ route('admin.home') }}">Return to home</a>
+    </div>
+    <ol class="d-flex flex-wrap justify-content-around cards_main">
         @foreach ($posts as $post)
-             <li class="text-center">
-                 <img src="{{ $post->image }}" alt="{{ $post->title }}">
-                 <h3><a href="{{ route('admin.posts.show', $post->id) }}">{{ $post->title }}</a></h3>
-                 <p><strong>{{ $post->description}}€</strong></p>
-                 <div><strong>{{ $post->date_creation }}</strong></div>
-                 <div><strong>{{ $post->creator }}</strong></div>
-                <a class="btn btn-primary" href="{{ route('admin.posts.show', $post->id) }}">View</a>
+            <li class="text-center">
+                <img src="{{ $post->image }}" alt="{{ $post->title }}" class="img-fluid">
+                <h3><a href="{{ route('admin.posts.show', $post->id) }}">{{ $post->title }}</a></h3>
+                <div>Created by: <strong>{{ $post->creator }}</strong></div>
                 <a class="btn btn-primary" href="{{ route('admin.posts.edit', $post->id) }}">Edit</a>
-                <button class="btn btn-danger btn-delete" data-id="{{ $post->id }}">Delete</button>
+                <button class="btn btn-danger btn-delete" data-id="{{ $post->id }}" {{--onClick="return confirm('Are you sure to delete this post?')"--}}>Delete</button>
             </li> 
          @endforeach
      </ol>
      
     {{ $posts->links() }}
 
-    <div class="text-center links mt-5">
-        <a href="{{ route('admin.posts.create') }}">Create</a>
-    </div>
-
+    <section id="confirmation-overlay" class="overlay d-none">
+        <div class="popup">
+            <h1>Sei sicuro di voler eliminare?</h1>
+            <div class="d-flex justify-content-center">
+                <button id="btn-no" class="btn btn-primary me-3">NO</button>
+                <form method="POST" data-base="{{ route('admin.posts.index') }}">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger">SI</button>
+                </form>
+            </div>
+        </div>
+    </section>
 </main>
 
 @endsection
