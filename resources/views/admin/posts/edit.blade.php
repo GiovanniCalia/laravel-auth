@@ -8,7 +8,7 @@
       <div class="row">
           <div class="col-8 offset-2">
               <h1 class="text-center">Add a post</h1>
-              <form method="POST" action="{{ route('admin.posts.update', $post->slug) }}" class="mb-3">
+              <form method="POST" action="{{ route('admin.posts.update', $post->id) }}" class="mb-3">
                   @csrf
                   @method('PUT')
                   <div class="mb-3">

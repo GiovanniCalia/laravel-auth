@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Post;
+
 
 class HomeController extends Controller
 {
@@ -26,4 +28,11 @@ class HomeController extends Controller
     {
         return view('admin.home');
     }
+
+
+    /*public function slugger(Request $request) {
+        return response()->json([
+            'slug' => Post::generateSlug($request->all()['originalStr'])
+        ]);
+    }*/
 }

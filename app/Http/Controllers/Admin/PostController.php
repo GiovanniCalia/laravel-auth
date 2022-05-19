@@ -10,14 +10,28 @@ use Illuminate\Validation\Rule;
 class PostController extends Controller
 {
 
-    /*protected $validationData = [
-        'title'    => 'required|max:255',
-        'slug'    => 'required|unique:posts|max:255',
-        'creator'    => 'required|max:50',
+    protected $validators = [
+        'title'          => 'required|max:255',
+        'creator'        => 'required|max:50',
         'description'    => 'required',
-        'image'   => 'nullable|url|max:255',
-        'date_creation'     => 'required|max:20',
-    ];*/
+        'image'          => 'nullable|url|max:255',
+        'date_creation'  => 'required|max:20',
+    ];
+
+     private function getValidators($model) {
+        return [
+            'title'          => 'required|max:255',
+            'slug' => [
+                'required',
+                Rule::unique('posts')->ignore($model),
+                'max:255'
+            ],
+            'creator'        => 'required|max:50',
+            'description'    => 'required',
+            'image'          => 'nullable|url|max:255',
+            'date_creation'  => 'required|max:20',
+        ];
+    }
 
     /**
      * Display a listing of the resource.
@@ -48,17 +62,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+       $request->validate($this->getValidators(null));
+       /* $request->validate([
             'title'          => 'required|max:255',
             'slug'           => 'required|unique:posts|max:255',
             'creator'        => 'required|max:50',
             'description'    => 'required',
             'image'          => 'nullable|url|max:255',
             'date_creation'  => 'required|max:20',
-        ]);
+        ]);*/
 
         $save = Post::create($request->all());
-        return redirect()->route('admin.posts.show', $save->slug); //id
+        return redirect()->route('admin.posts.show', $save->id); //id
     }
 
     /**
@@ -92,18 +107,20 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $request->validate([
+        /*$request->validate([
             'title'          => 'required|max:255',
             'slug'           => 'required|unique:posts|max:255', //Rule::unique('posts')->ignore($this->id)
             'creator'        => 'required|max:50',
             'description'    => 'required',
             'image'          => 'nullable|url|max:255',
             'date_creation'  => 'required|max:20',
-        ]);
+        ]);*/
+
+        $request->validate($this->getValidators($post));
 
         $post->update($request->all());
 
-        return redirect()->route('admin.posts.show', $post->slug);  //id
+        return redirect()->route('admin.posts.show', $post->id);  //id
     }
 
     /**
