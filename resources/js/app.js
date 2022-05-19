@@ -31,20 +31,39 @@ const app = new Vue({
     el: '#app',
 });
 
-/*
-const confirmationOverlay = document.getElementById('confirmation-overlay');
-if (confirmationOverlay) {
-    const confirmationForm = confirmationOverlay.querySelector('form');
 
+const btnSlugger = document.querySelector('#btn-slugger');
+if (btnSlugger) {
+    btnSlugger.addEventListener('click', function() {
+        const eleSlug = document.querySelector('#slug');
+        const title = document.querySelector('#title').value;
+
+        Axios.post('/admin/slugger', {
+            originalStr: title,
+        })
+            .then(function (response) {
+                eleSlug.value = response.data.slug;
+            })
+    });
+}
+
+
+const confirmationOverlay = document.querySelector('#confirmation-overlay');
+if (confirmationOverlay) {
     document.querySelectorAll('.btn-delete').forEach(button => {
         button.addEventListener('click', function() {
+            const id = this.closest('li').dataset.id;
+            const confirmationForm = confirmationOverlay.querySelector('form');
+            const strAction = confirmationForm.dataset.base.replace('*****', id);
+            confirmationForm.action = strAction;
             confirmationOverlay.classList.remove('d-none');
-            confirmationForm.action = confirmationForm.dataset.base + '/' + this.dataset.id;
-        });
+        })
     });
 
-    document.getElementById('btn-no').addEventListener('click', function() {
-        confirmationForm.action = '';
+    const btnNo = document.querySelector('#btn-no');
+    btnNo.addEventListener('click', function() {
+        //confirmationForm.action = '';
         confirmationOverlay.classList.add('d-none');
-    })
-}*/
+    });
+
+}

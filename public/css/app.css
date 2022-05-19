@@ -12195,6 +12195,8 @@ ol {
 .background_post h1,
 .background_post .h1 {
   text-transform: uppercase;
+  text-align: center;
+  font-size: 4rem;
 }
 
 /* BTN DELETE*/

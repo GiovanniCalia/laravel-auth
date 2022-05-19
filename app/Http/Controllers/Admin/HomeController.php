@@ -30,9 +30,9 @@ class HomeController extends Controller
     }
 
 
-    /*public function slugger(Request $request) {
+    public function slugger(Request $request) {
         return response()->json([
             'slug' => Post::generateSlug($request->all()['originalStr'])
         ]);
-    }*/
+    }
 }
