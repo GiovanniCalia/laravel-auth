@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('pageTitle', 'Show post')
+@section('pageTitle', $post->title)
 
 @section('content')
 <main class="main_box">
@@ -15,7 +15,12 @@
             <a class="btn btn-primary" href="{{ route('admin.posts.edit', $post->id) }}">Edit</a>
             <a class="btn btn-primary" href="{{ route('admin.posts.index') }}">Return to posts list</a>
         </div>
-        <button class="btn btn-danger btn-delete mt-2" data-id="{{ $post->id }}" onClick="return confirm('Are you sure to delete this post?')">Delete</button>
+        {{--<button class="btn btn-danger btn-delete mt-2" data-id="{{ $post->id }}" onClick="return confirm('Are you sure to delete this post?')">Delete</button>--}}
+        <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-danger mt-3" onClick="return confirm('Are you sure to delete this comic?')">Delete</button>
+        </form>
 
         {{--<section id="confirmation-overlay" class="overlay d-none">
             <div class="popup">
