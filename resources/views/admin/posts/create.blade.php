@@ -55,8 +55,8 @@
                   <button type="submit" class="btn btn-primary">Submit</button>
               </form>
               <div class="text-center links my-4">
-                <a href="{{ url()->previous()}}" id="gray">Back</a>
-                <a href="{{ route('admin.posts.index') }}">Return to posts list</a>
+                <a class="btn btn-primary" href="{{ url()->previous()}}" id="gray">Back</a>
+                <a class="btn btn-primary" href="{{ route('admin.posts.index') }}">Return to posts list</a>
               </div>
           </div>
       </div>
